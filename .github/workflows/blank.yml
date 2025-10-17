@@ -24,7 +24,7 @@ jobs:
           python3 -m venv env-test
           source env-test/bin/activate
           pip install --upgrade pip
-          pip install -r requirements-test.txt
+          pip install -r requirements.txt
 
       - name: Ejecutar tests sincronizados
         run: |
