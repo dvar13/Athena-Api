@@ -29,5 +29,5 @@ jobs:
       - name: Ejecutar tests sincronizados
         run: |
           source env-test/bin/activate
-          pytest -v tests/sync --maxfail=1 --disable-warningsll -r requirements.txt
+          pytest -v tests/sync --maxfail=1 --disable-warningsll
           pytest
