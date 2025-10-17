@@ -9,7 +9,7 @@ on:
 
 jobs:
   # -----------------------------
-  # 1. Tests con requirements-test.txt
+  # 1. Tests sincronizados
   # -----------------------------
   test-sync:
     runs-on: ubuntu-latest
@@ -29,5 +29,4 @@ jobs:
       - name: Ejecutar tests sincronizados
         run: |
           source env-test/bin/activate
-          pytest -v tests/sync --maxfail=1 --disable-warningsll
-          pytest
+          pytest -v tests/sync --maxfail=1 --disable-warnings
