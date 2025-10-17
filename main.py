@@ -110,18 +110,22 @@ def rentals_by_day():
     
 
 # Gráfico temporal: número de alquileres en junio 2006
-@app.get("/charts/rentals-june-2006")
-def rentals_june_2006():
+@app.get("/charts/rentals-june-2005")
+def rentals_june_2005():
     query = """
     SELECT 
-        f.rental_date,
-        COUNT(*) AS total_rentals
-    FROM fact_rental f
-    WHERE f.rental_date BETWEEN DATE('2006-06-01') AND DATE('2006-06-30')
-    GROUP BY f.rental_date
-    ORDER BY f.rental_date;
+        d.rental_date AS fecha,
+        COUNT(f.amount) AS total_alquileres
+    FROM "sakila-rds-customers-app".fact_rental f
+    JOIN "sakila-rds-customers-app".dim_date d 
+        ON f.rental_date = d.rental_date
+    WHERE year(d.rental_date) = 2005
+      AND month(d.rental_date) = 6
+    GROUP BY d.rental_date
+    ORDER BY d.rental_date;
+
     """
-    return {"chart": "rentals_june_2006", "data": run_athena_query(query)}
+    return {"chart": "rentals_june_2005", "data": run_athena_query(query)}
 
 
 
